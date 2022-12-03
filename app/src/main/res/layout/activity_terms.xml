@@ -29,6 +29,81 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <LinearLayout
+            android:id="@+id/show_button_terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:layout_below="@id/appbar_layout_terms">
+
+            <Button
+                android:id="@+id/btn_terms"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="12dp"
+                android:text="Show Terms"
+                android:background="@drawable/bg_corner_16"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <Button
+                android:id="@+id/btn_privacy"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="12dp"
+                android:padding="5dp"
+                android:text="Show privacy"
+                android:background="@drawable/bg_corner_16"
+                android:fontFamily="@font/poppins_regular"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/show_button_terms"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_corner_16"
+            android:backgroundTint="@color/white"
+            android:padding="16dp">
+
+            <ScrollView
+                android:id="@+id/tv_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="10dp"
+                    android:text="@string/terms" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/tv_privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="10dp"
+                    android:text="@string/privacy" />
+            </ScrollView>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

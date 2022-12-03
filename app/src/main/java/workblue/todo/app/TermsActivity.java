@@ -2,11 +2,14 @@ package workblue.todo.app;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,12 +23,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class TermsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TermsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView topNavigationViewTerms;
     private TextView tvName, tvEmail;
-    private ImageView imgAvatar;
+    private ScrollView tvPrivacy, tvTerm;
+    private Button btnTerms, btnPrivacy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class TermsActivity extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
         showUserInformation();
+        btnTerms.setOnClickListener(this);
+        btnPrivacy.setOnClickListener(this);
     }
 
     private void initUi() // ánh xạ
@@ -48,9 +54,27 @@ public class TermsActivity extends AppCompatActivity implements NavigationView.O
         drawerLayout = findViewById(R.id.drawer_layout_terms);
         topNavigationViewTerms = findViewById(R.id.top_navigation_terms);
         topNavigationViewTerms.setNavigationItemSelectedListener(this);
-        imgAvatar = topNavigationViewTerms.getHeaderView(0).findViewById(R.id.profile_image);
+        btnPrivacy = findViewById(R.id.btn_privacy);
+        btnTerms = findViewById(R.id.btn_terms);
         tvName = topNavigationViewTerms.getHeaderView(0).findViewById(R.id.profile_name);
         tvEmail = topNavigationViewTerms.getHeaderView(0).findViewById(R.id.profile_email);
+        tvPrivacy = findViewById(R.id.tv_privacy);
+        tvTerm = findViewById(R.id.tv_terms);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_terms:
+                tvTerm.setVisibility(View.VISIBLE);
+                tvPrivacy.setVisibility(View.GONE);
+                break;
+            case R.id.btn_privacy:
+                tvTerm.setVisibility(View.GONE);
+                tvPrivacy.setVisibility(View.VISIBLE);
+                break;
+        }
+
     }
 
     private void showUserInformation() {
@@ -113,4 +137,5 @@ public class TermsActivity extends AppCompatActivity implements NavigationView.O
             super.onBackPressed();
         }
     }
+
 }
