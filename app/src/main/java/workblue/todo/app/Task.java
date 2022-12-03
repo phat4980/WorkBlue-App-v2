@@ -1,14 +1,8 @@
 package workblue.todo.app;
 
-public class Task {
+public class Task extends TaskId {
     private String task, due;
     private int status;
-
-    public Task(String task, String due, int status) {
-        this.task = task;
-        this.due = due;
-        this.status = status;
-    }
 
     public String getTask() {
         return task;
