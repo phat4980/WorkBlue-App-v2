@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "683018487461",
+    "project_id": "workblue-todo-app-6e467",
+    "storage_bucket": "workblue-todo-app-6e467.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683018487461:android:1e87124e67133f9c46af4c",
+        "android_client_info": {
+          "package_name": "workblue.todo.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683018487461-6vvrfitl5vi4pl5ii5os4sm0lbk4qhdd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "workblue.todo.app",
+            "certificate_hash": "6306665696aa706d21bc677d12f26252af26daa1"
+          }
+        },
+        {
+          "client_id": "683018487461-ii3jbbqj438080ggppd7f3a7mmqs75l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE7Oga7cvxOqHNwQRqebnj2VdpzDwXByE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683018487461-ii3jbbqj438080ggppd7f3a7mmqs75l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
