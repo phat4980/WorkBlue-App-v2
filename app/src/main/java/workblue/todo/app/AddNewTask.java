@@ -40,6 +40,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
     private FirebaseFirestore firestore;
     private Context context;
     private String dueDate = "";
+    private String id = "";
+    private String dueDateUpdate = "";
 
     public static AddNewTask newInstance() {
         return new AddNewTask();
@@ -62,6 +64,24 @@ public class AddNewTask extends BottomSheetDialogFragment {
         btnSaveTask = view.findViewById(R.id.btn_save_task);
 
         firestore = FirebaseFirestore.getInstance();
+        boolean isUpdate = false;
+
+        final Bundle bundle = getArguments();
+        if(bundle != null) {
+            isUpdate = true;
+            String tTask = bundle.getString("task");
+            id = bundle.getString("id");
+            dueDateUpdate = bundle.getString("due");
+
+            taskEdit.setText(tTask);
+            setDate.setText(dueDateUpdate);
+
+            if (tTask.length() > 0){
+                btnSaveTask.setEnabled(false);
+                btnSaveTask.setBackgroundColor(Color.GRAY);
+            }
+
+        }
         taskEdit.addTextChangedListener(new TextWatcher() { // nhập task
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -108,13 +128,17 @@ public class AddNewTask extends BottomSheetDialogFragment {
             }
         });
 
-        /*boolean finalIsUpdate = isUpdate;*/
+
+        boolean finalIsUpdate = isUpdate;
         btnSaveTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String task = taskEdit.getText().toString().trim();
-
+                if(finalIsUpdate) {
+                    firestore.collection("task").document(id).update("task", task, "due", dueDate);
+                    Toast.makeText(context, "Task updated", Toast.LENGTH_SHORT).show();
+                } else {
                     if (task.isEmpty()) {
                         Toast.makeText(context, "Empty task not Allowed !!", Toast.LENGTH_SHORT).show();
                     } else {
@@ -143,6 +167,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                             }
                         });
                     }
+                }
                 dismiss();
             }
         });
