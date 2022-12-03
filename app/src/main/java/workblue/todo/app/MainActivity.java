@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private BottomNavigationView bottomNavigationView;
     private NavigationView topNavigationView;
     private TextView tvName, tvEmail;
+    private SearchView searchView;
 
     private RecyclerView recyclerView;
     private FloatingActionButton btnAdd;
@@ -142,7 +146,25 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     @Override // hiển thị menu
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_option_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setMaxWidth( Integer.MAX_VALUE );
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 
     private void bottomNavigationChange() //Navigate bằng bottom
@@ -208,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         tvEmail.setText(email);
     }
 
+    //get thông tin từ google signin
     private void googleGetUser() {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
