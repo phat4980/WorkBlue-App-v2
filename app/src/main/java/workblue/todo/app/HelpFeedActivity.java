@@ -1,13 +1,14 @@
 package workblue.todo.app;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,11 +24,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HelpFeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -35,9 +44,9 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
     private NavigationView topNavigationViewHF;
     private TextView tvName, tvEmail;
     private Spinner spinnerHelpGuild;
-    private Button openDialogFeedback, btnNoFeed, btnSendFeed;
+    private Button openDialogFeedback;
     private EditText edtFeedback;
-    private Dialog dialog;
+    private FirebaseFirestore firestore;
 
 
     @Override
@@ -51,6 +60,9 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
                 toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        firestore = FirebaseFirestore.getInstance();
+
 
         showUserInformation();
         showHelpGuild();
@@ -68,9 +80,6 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
         tvEmail = topNavigationViewHF.getHeaderView(0).findViewById(R.id.profile_email);
         spinnerHelpGuild = findViewById(R.id.spinner_help);
         openDialogFeedback = findViewById(R.id.press_feedBack);
-        btnNoFeed = findViewById(R.id.btn_no_feed);
-        btnSendFeed = findViewById(R.id.btn_send_feed);
-        edtFeedback = findViewById(R.id.edt_feed_back);
     }
 
     private void showUserInformation() {
@@ -119,15 +128,60 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
         openDialogFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new Dialog(HelpFeedActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View alertLayout = inflater.inflate(R.layout.dialog_feedback, null);
+                edtFeedback = (EditText)alertLayout.findViewById(R.id.edt_feed_back);
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(HelpFeedActivity.this);
+                alert.setView(alertLayout);
+                alert.setCancelable(false);
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String feedback = edtFeedback.getText().toString().trim();
+                        if (feedback.isEmpty()) {
+                            Toast.makeText(HelpFeedActivity.this, "Empty task not Allowed !!", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            Map<String, Object> feedbackMap = new HashMap<>();
+                            feedbackMap.put("feedback", "Hay lam con trai cua ta");
+
+                            firestore.collection("Feedback").add(feedbackMap)
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(HelpFeedActivity.this, "Task Saved", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(HelpFeedActivity.this, "error", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(HelpFeedActivity.this, "Error adding document"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    }
+                });
+                AlertDialog dialog = alert.create();
+                dialog.show();
+
+                /*dialog = new Dialog(HelpFeedActivity.this);
                 dialog.setContentView(R.layout.dialog_feedback);
                 dialog.show();
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);*/
             }
         });
     }
-
-
 
     @Override // hiển thị menu
     public boolean onCreateOptionsMenu(Menu menu) {

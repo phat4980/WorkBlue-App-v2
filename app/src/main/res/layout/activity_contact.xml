@@ -115,6 +115,7 @@
             android:focusable="true"
             android:checkable="true"
             android:layout_margin="20dp"
+            android:backgroundTint="@color/primaryLightColor"
             android:layout_below="@id/showSDT3">
 
             <LinearLayout
@@ -127,7 +128,6 @@
                 <ImageView
                     android:layout_width="119dp"
                     android:layout_height="match_parent"
-                    android:contentDescription="content_description_media"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/logo" />
 
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp" >
 
                     <!-- Title, secondary and supporting text -->
                     <TextView
