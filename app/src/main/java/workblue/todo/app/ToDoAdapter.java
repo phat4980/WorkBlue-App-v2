@@ -77,6 +77,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
                 if(isChecked) {
                     firestore.collection("task").document(task.TaskId).update("status",1);
                     buttonView.setTextColor(Color.GREEN);
+                    holder.mCheckBox.setEnabled(false);
                 } else {
                     firestore.collection("task").document(task.TaskId).update("status", 0);
                 }
