@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.drawer;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,7 +26,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +36,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
+import workblue.todo.app.start.LoginActivity;
 
 public class HelpFeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -174,11 +177,6 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
                 });
                 AlertDialog dialog = alert.create();
                 dialog.show();
-
-                /*dialog = new Dialog(HelpFeedActivity.this);
-                dialog.setContentView(R.layout.dialog_feedback);
-                dialog.show();
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);*/
             }
         });
     }

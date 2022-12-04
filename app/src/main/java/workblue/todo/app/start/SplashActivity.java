@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -41,9 +41,15 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+
+import workblue.todo.app.adapter.ToDoAdapter;
+import workblue.todo.app.drawer.ContactActivity;
+import workblue.todo.app.drawer.HelpFeedActivity;
+import workblue.todo.app.drawer.SettingsActivity;
+import workblue.todo.app.drawer.TermsActivity;
+import workblue.todo.app.model.Task;
+import workblue.todo.app.start.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements OnDialogCloseListener, NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;

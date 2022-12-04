@@ -1,6 +1,6 @@
-package workblue.todo.app;
+package workblue.todo.app.model;
 
-public class Task extends TaskId {
+public class Task extends workblue.todo.app.model.TaskId {
     private String task, due;
     private int status;
 

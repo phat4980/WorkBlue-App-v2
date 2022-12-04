@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+import workblue.todo.app.adapter.ToDoAdapter;
 
 public class TouchHelper extends ItemTouchHelper.SimpleCallback {
     private final ToDoAdapter adapter;

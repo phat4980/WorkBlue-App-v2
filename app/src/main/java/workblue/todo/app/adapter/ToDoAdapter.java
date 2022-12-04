@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -19,6 +19,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import workblue.todo.app.AddNewTask;
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
+import workblue.todo.app.model.Task;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> implements Filterable {
     private List<Task> tasks;

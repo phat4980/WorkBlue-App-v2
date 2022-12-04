@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.model;
 
 import androidx.annotation.NonNull;
 

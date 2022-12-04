@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.drawer;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +25,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
+import workblue.todo.app.start.LoginActivity;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int MY_REQUEST_CODE = 10;

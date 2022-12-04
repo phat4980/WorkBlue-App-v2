@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.drawer;
 
 import android.Manifest;
 import android.content.Intent;
@@ -39,6 +39,10 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
+import workblue.todo.app.start.LoginActivity;
 
 
 public class ContactActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

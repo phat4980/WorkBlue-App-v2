@@ -37,19 +37,19 @@
             android:value="@string/map_key" />
 
         <activity
-            android:name=".ContactActivity"
+            android:name=".drawer.ContactActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".TermsActivity"
+            android:name=".drawer.TermsActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".HelpFeedActivity"
+            android:name=".drawer.HelpFeedActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".drawer.SettingsActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <!-- Facebook -->
@@ -76,7 +76,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".start.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,10 +85,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".start.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".start.LoginActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity

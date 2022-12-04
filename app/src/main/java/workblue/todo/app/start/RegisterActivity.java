@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import workblue.todo.app.R;
 
 public class RegisterActivity extends AppCompatActivity {
     TextInputLayout nameTextInputSU, emailTextInputSU, passwordTextInputSU;

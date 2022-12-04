@@ -1,4 +1,4 @@
-package workblue.todo.app;
+package workblue.todo.app.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +36,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
+
+import workblue.todo.app.MainActivity;
+import workblue.todo.app.R;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -208,10 +211,10 @@ public class LoginActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 task.getResult(ApiException.class);
-            } catch (ApiException e) {
-                Toast.makeText(this, "error:" + e.getMessage(), Toast.LENGTH_LONG).show();
                 NavigateTo();
                 finishAffinity();
+            } catch (ApiException e) {
+                Toast.makeText(this, "error:" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         } else {
             //If not request code is RC_SIGN_IN it must be facebook

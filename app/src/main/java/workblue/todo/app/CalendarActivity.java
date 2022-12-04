@@ -22,6 +22,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import workblue.todo.app.drawer.ContactActivity;
+import workblue.todo.app.drawer.HelpFeedActivity;
+import workblue.todo.app.drawer.SettingsActivity;
+import workblue.todo.app.drawer.TermsActivity;
+import workblue.todo.app.start.LoginActivity;
+
 public class CalendarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;

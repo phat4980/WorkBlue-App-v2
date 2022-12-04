@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundblue"
-    tools:context=".SettingsActivity"
+    tools:context=".drawer.SettingsActivity"
     tools:openDrawer="start"
     android:fitsSystemWindows="true">
 
