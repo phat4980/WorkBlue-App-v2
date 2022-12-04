@@ -151,7 +151,7 @@ public class HelpFeedActivity extends AppCompatActivity implements NavigationVie
                         } else {
 
                             Map<String, Object> feedbackMap = new HashMap<>();
-                            feedbackMap.put("feedback", "Hay lam con trai cua ta");
+                            feedbackMap.put("feedback", "your app nice");
 
                             firestore.collection("Feedback").add(feedbackMap)
                                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
